@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>calculator...!</title>
+	<link rel="stylesheet" type="text/css" href="calculator example.css">
+	<script type="text/javascript" src="calculator example.js"></script>
+</head>
+<body>
+<div class="container">
+	<form class="calc_query">
+		<p>Query :</p>
+        <input id="Query" type="text" name="Query" /><br/>
+	</form>
+	<table class="calc_numb">
+		
+		<tr>
+			<td><button name="num-btn" onclick="get_stream(0),stream_view(1)" value="1">1</button></td>
+			<td><button name="num-btn" onclick="get_stream(1),stream_view(2)" value="2">2 </button></td>
+			<td><button name="num-btn" onclick="get_stream(2),stream_view(3)" value="3">3</button></td>
+			<td><button  onclick="clear_stream()">c</button></td>
+
+		</tr>
+		<tr>
+			<td><button name="num-btn" onclick="get_stream(3),stream_view(4)" value="4">4</button></td>
+			<td><button name="num-btn" onclick="get_stream(4),stream_view(5)" value="5">5</button></td>
+			<td><button name="num-btn" onclick="get_stream(5),stream_view(6)" value="6">6</button></td>
+			<td><button  onclick="clear_last_elem(),stream_view('cll')">ce</button></td>
+		</tr>
+		<tr>
+			<td><button name="num-btn" onclick="get_stream(6),stream_view(7)" value="7">7</button></td>
+			<td><button name="num-btn" onclick="get_stream(7),stream_view(8)" value="8">8</button></td>
+			<td><button name="num-btn" onclick="get_stream(8),stream_view(9)" value="9">9</button></td>
+			<td><button  onclick="stack('+'),mem_view('+')">M+</button></td>
+		</tr>
+		<tr>
+			<td><button name="num-btn" onclick="get_stream(9),stream_view(0)"value="0">0</button></td>
+			<td><button name="op-btn" onclick="get_stream('-'),stream_view('-')" value="-">-</button></td>
+			<td><button name="op-btn" onclick="get_stream('*'),stream_view('*')" value="*">*</button></td>
+			<td><button name="op-btn" onclick="get_stream('+'),stream_view('+')" value="+">+</button></td>
+		</tr>
+		<tr>
+			<td><button name="op-btn" onclick="get_stream('/'),stream_view('/')" value="/">/</button></td>
+			<td><button name="op-btn" onclick="get_stream('^'),stream_view('^')" value="^">^</button></td>
+			<td><button name="op-btn" onclick="get_stream('%'),stream_view('%')" value="%">rem</button></td> 
+			<td><button  onclick="stack('-'),mem_view('-')">M-</button></td> 
+		</tr>
+		
+
+
+	</table>
+	<div class="test"> <p> <p id="memory">blank</p>>test if center position </p></div>
+	<form class="calc_query">
+        
+        <p>result</p>
+        <p id="result">blank</p>
+        
+	</form>
+	<button id="calc_btn" onclick="get_stream('$'),make_change()"> calculate </button>
+	<script type="text/javascript"> 
+       // var query_now = on_screen;
+       function mem_view(i){
+       	if(i=="+"){document.getElementById("memory").innerHTML = "ans is saved";}
+       	else if(i=='-'){document.getElementById("memory").innerHTML = "ans is deleted";}
+       }
+        function make_change(){                    
+        document.getElementById("result").innerHTML=result;
+        document.getElementById("Query").innerHTML = on_screen;
+        //problem 1 : make_change does not show the query although on_screen is checked and working well inside console
+        //problem 2: conncurent calculations has deformation issue should be inspected [SOLVED]
+        //problem 3: after clear_all func system does not work properly
+    }
+    </script>
+
+</div>
+</body>
+</html>
